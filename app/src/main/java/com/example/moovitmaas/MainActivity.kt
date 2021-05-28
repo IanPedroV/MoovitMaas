@@ -2,6 +2,8 @@ package com.example.moovitmaas
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ArrayAdapter
+import android.widget.ListView
 import androidx.fragment.app.Fragment
 import com.example.moovitmaas.fragments.HomeFragment
 import com.example.moovitmaas.fragments.MapsFragment
@@ -26,18 +28,27 @@ class MainActivity : AppCompatActivity() {
                 R.id.ic_baseline_person_24 -> makeCurrentFragment(personFragment)
                 R.id.ic_baseline_map_24 -> makeCurrentFragment(mapsFragment)
             }
-
             true
         }
 
     }
 
+    override fun onStart() {
+        super.onStart()
+        val visitedPlaces = ArrayList<String>()
+        visitedPlaces.add("661 Jacobson Spring")
+        visitedPlaces.add("230 Cummings Cliffs")
+        visitedPlaces.add("7283 Schowalter Circle")
+        visitedPlaces.add("5393 Runte Freeway")
+        visitedPlaces.add("965 Joanne Harbor")
+        val lv = findViewById<ListView>(R.id.noteList)
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, visitedPlaces)
+        lv.adapter = adapter
+    }
 
-
-
-    private fun makeCurrentFragment(fragment : Fragment){
+    private fun makeCurrentFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction().apply {
-            replace(R.id.fl_wrapper,fragment)
+            replace(R.id.fl_wrapper, fragment)
             commit()
         }
     }
