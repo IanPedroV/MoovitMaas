@@ -35,6 +35,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+        buildList()
+    }
+
+
+    private fun buildList() {
         val visitedPlaces = ArrayList<String>()
         visitedPlaces.add("661 Jacobson Spring")
         visitedPlaces.add("230 Cummings Cliffs")
